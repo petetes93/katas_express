@@ -2,7 +2,7 @@
 const express = require('express')
 const app = express()
 const time = new Date()
-const array = []
+const numbers = []
 
 app.use(express.json())
 
@@ -35,8 +35,18 @@ app.get('/add/:a/:b', (req, res) => {
   res.send('El resultado es: ' + resultado)
 })
 
-app.post('/number/arr', (req, res) => {
-  res.send()
+app.post('/number/:numeros', (req, res) => {
+  const number = parseInt(req.params.numeros)
+  if (!isNaN(number)) {
+    numbers.push(number)
+  }
+  res.send(numbers)
 })
 
+app.delete('/numbers/:nums', (req, res) => {
+  const nums = parseInt(req.params.nums)
+  res.send(numbers)
+})
+
+req.body
 app.listen(4002, () => console.log('Server on...'))
